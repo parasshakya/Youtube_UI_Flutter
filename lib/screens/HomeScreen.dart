@@ -13,16 +13,19 @@ class HomeScreen extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
               YoutubeAppBar(),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    (context,index){
-                      final Video video = videos[index];
-                      return VideoCard(video: video);
-                    },
-                    childCount: videos.length,
+              SliverPadding(
+                padding: EdgeInsets.only(bottom: 65.0),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (context,index){
+                        final Video video = videos[index];
+                        return VideoCard(video: video);
+                      },
+                      childCount: videos.length,
+
+                  ),
 
                 ),
-
               )
           ],
         ),
