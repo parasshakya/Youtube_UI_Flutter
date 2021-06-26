@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:youtubeuiflutter/data.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
+import 'package:youtubeuiflutter/screens/ImportScreens.dart';
 
 class VideoCard extends StatelessWidget {
 final Video video;
@@ -13,6 +14,7 @@ final Video video;
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        context.read(selectedVideoProvider).state = video;
       },
       child: Column(
         children: [
