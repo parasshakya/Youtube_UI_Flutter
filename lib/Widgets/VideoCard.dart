@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:miniplayer/miniplayer.dart';
 import 'package:youtubeuiflutter/data.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
@@ -15,6 +16,7 @@ final Video video;
     return GestureDetector(
       onTap: (){
         context.read(selectedVideoProvider).state = video;
+        context.read(miniPlayerControllerProvider).state.animateToHeight(state: PanelState.MAX);
       },
       child: Column(
         children: [
