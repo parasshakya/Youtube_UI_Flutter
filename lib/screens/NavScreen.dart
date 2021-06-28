@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:miniplayer/miniplayer.dart';
+import 'package:youtubeuiflutter/Widgets/Responsive.dart';
 import 'package:youtubeuiflutter/screens/ImportScreens.dart';
 
 import '../data.dart';
@@ -25,6 +26,7 @@ class _NavScreenState extends State<NavScreen> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final _isDesktop = Responsive.isDesktop(context);
     return Scaffold(
       body: Consumer(
         builder: (context,watch,_){
