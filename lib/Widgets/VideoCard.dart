@@ -8,8 +8,10 @@ import 'package:youtubeuiflutter/screens/ImportScreens.dart';
 
 class VideoCard extends StatelessWidget {
 final Video video;
+final bool hasPadding;
+ final VoidCallback? onTap;
 
-  const VideoCard({Key? key, required this.video}) : super(key: key);
+  const VideoCard({Key? key, required this.video, this.hasPadding = false, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +19,31 @@ final Video video;
       onTap: (){
         context.read(selectedVideoProvider).state = video;
         context.read(miniPlayerControllerProvider).state.animateToHeight(state: PanelState.MAX);
+        if(onTap != null) {
+          onTap!();
+        }
       },
       child: Column(
         children: [
-          Stack(
-            children: [
-              Image.network(video.thumbnailUrl, height: 220,
-              width: double.infinity,
-               fit: BoxFit.cover,
-              ),
-              Positioned(
-                bottom: 8,
-                right: 8,
-                child: Container(
-                  padding: EdgeInsets.all(8.0),
-                  color: Colors.black,
-                  child: Text(video.duration),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: hasPadding ? 8.0 : 0),
+            child: Stack(
+              children: [
+                Image.network(video.thumbnailUrl, height: 220,
+                width: double.infinity,
+                 fit: BoxFit.cover,
                 ),
-              )
-            ],
+                Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: Container(
+                    padding: EdgeInsets.all(8.0),
+                    color: Colors.black,
+                    child: Text(video.duration),
+                  ),
+                )
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
